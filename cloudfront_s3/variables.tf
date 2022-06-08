@@ -7,5 +7,5 @@ variable "region" {
 variable "bucket_prefix" {
   type        = string
   description = "The prefix for the S3 bucket"
-  default     = "tf-s3-website"
+  default     = "tf-s3-website-"
 }

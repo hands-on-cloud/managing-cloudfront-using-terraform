@@ -28,7 +28,7 @@ resource "aws_s3_bucket_public_access_block" "public_block" {
 
 # encrypt bucket using SSE-S3:
 resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
-  bucket = aws_s3_bucket.mybucket.bucket
+  bucket = aws_s3_bucket.bucket.id
 
   rule {
     apply_server_side_encryption_by_default {
