@@ -7,7 +7,7 @@ resource "aws_cloudfront_origin_access_identity" "oai" {
 resource "aws_cloudfront_distribution" "cf_dist" {
   enabled             = true
   aliases             = [var.domain_name]
-  default_root_object = "index.html"
+  default_root_object = "website/index.html"
 
   origin {
     domain_name = aws_s3_bucket.bucket.bucket_regional_domain_name
