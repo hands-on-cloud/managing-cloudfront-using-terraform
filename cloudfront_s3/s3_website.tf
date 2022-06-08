@@ -1,13 +1,13 @@
 # create S3 Bucket:
 resource "aws_s3_bucket" "bucket" {
-    bucket_prefix = var.bucket_prefix
-    
-    tags = {
-        "Project" = "hands-on.cloud"
-        "ManagedBy" = "Terraform"
-    }
-    
-    force_destroy = true
+  bucket_prefix = var.bucket_prefix
+
+  tags = {
+    "Project"   = "hands-on.cloud"
+    "ManagedBy" = "Terraform"
+  }
+
+  force_destroy = true
 }
 
 # create bucket ACL :
@@ -20,10 +20,10 @@ resource "aws_s3_bucket_acl" "bucket_acl" {
 resource "aws_s3_bucket_public_access_block" "public_block" {
   bucket = aws_s3_bucket.bucket.id
 
-  block_public_acls   = true
-  block_public_policy = true
+  block_public_acls       = true
+  block_public_policy     = true
   restrict_public_buckets = true
-  ignore_public_acls = true
+  ignore_public_acls      = true
 }
 
 # encrypt bucket using SSE-S3:
@@ -32,7 +32,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
 
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm     = "AES256"
+      sse_algorithm = "AES256"
     }
   }
 }
