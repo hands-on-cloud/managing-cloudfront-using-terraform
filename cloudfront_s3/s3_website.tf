@@ -48,6 +48,12 @@ resource "aws_s3_bucket_website_configuration" "website" {
   }
 }
 
+# add bucket policy to let the CloudFront OAI get objects:
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id
+  policy = data.aws_iam_policy_document.bucket_policy_document.json
+}
+
 #upload website files to s3:
 resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.bucket.id
