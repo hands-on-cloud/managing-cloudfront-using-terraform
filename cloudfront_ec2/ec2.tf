@@ -18,10 +18,7 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   
-  tags = {
-    "Project"   = "hands-on.cloud"
-    "ManagedBy" = "Terraform"
-  }
+  tags = local.tags
 }
 
 # creating ec2 instance :
@@ -32,8 +29,7 @@ resource "aws_instance" "ec2" {
   user_data                   = data.template_cloudinit_config.user_data.rendered
   vpc_security_group_ids      = [aws_security_group.ec2_sg.id]
 
-  tags = {
-    "Project"   = "hands-on.cloud"
-    "ManagedBy" = "Terraform"
-  }
+  tags = merge(local.tags, {
+    Name = "ec2-cloudfront"
+  })
 }
