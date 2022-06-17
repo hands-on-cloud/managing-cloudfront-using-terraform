@@ -1,10 +1,43 @@
-# create launch configuration for ASG :
+# Create a security group for EC2 instances to allow ingress on port 80 :
+resource "aws_security_group" "ec2_ingress" {
+  name        = "ec2_http_ingress"
+  description = "Used for autoscale group"
+  vpc_id      = module.vpc.vpc_id
 
+  # HTTP access from anywhere
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  # SSH from anywhere
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# create launch configuration for ASG :
 resource "aws_launch_configuration" "asg_launch_conf" {
-  name_prefix   = "tf-cloufront-alb-demo-"
-  image_id      = data.aws_ami.ubuntu_ami.id
-  instance_type = "t2.micro"
-  user_data     = data.template_cloudinit_config.user_data.rendered
+  name_prefix     = "tf-cloufront-alb-demo-"
+  image_id        = data.aws_ami.ubuntu_ami.id
+  instance_type   = "t2.micro"
+  user_data       = data.template_cloudinit_config.user_data.rendered
+  security_groups = [aws_security_group.ec2_ingress.id]
 
   lifecycle {
     create_before_destroy = true
