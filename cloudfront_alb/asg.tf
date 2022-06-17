@@ -17,6 +17,7 @@ resource "aws_autoscaling_group" "asg" {
   launch_configuration = aws_launch_configuration.asg_launch_conf.name
   min_size             = 1
   max_size             = 3
+  vpc_zone_identifier  = [module.vpc.private_subnets[0].id, module.vpc.private_subnets[1].id] # placing asg in private subnet
 
   lifecycle {
     create_before_destroy = true
