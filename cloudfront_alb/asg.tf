@@ -17,7 +17,7 @@ resource "aws_autoscaling_group" "asg" {
   launch_configuration = aws_launch_configuration.asg_launch_conf.name
   min_size             = 1
   max_size             = 3
-  
+
   lifecycle {
     create_before_destroy = true
   }
