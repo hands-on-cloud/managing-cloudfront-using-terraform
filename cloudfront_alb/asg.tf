@@ -15,8 +15,8 @@ resource "aws_launch_configuration" "asg_launch_conf" {
 resource "aws_autoscaling_group" "asg" {
   name                 = "tf-cloudfront-alb-asg"
   launch_configuration = aws_launch_configuration.asg_launch_conf.name
-  min_size             = 1
-  max_size             = 3
+  min_size             = 3
+  max_size             = 10
   vpc_zone_identifier  = module.vpc.private_subnets # placing asg in private subnet
 
   lifecycle {
