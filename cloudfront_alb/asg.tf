@@ -18,6 +18,7 @@ resource "aws_autoscaling_group" "asg" {
   min_size             = 3
   max_size             = 10
   vpc_zone_identifier  = module.vpc.private_subnets # placing asg in private subnet
+  target_group_arns    = [aws_lb_target_group.alb_tg.arn]
 
   lifecycle {
     create_before_destroy = true
@@ -25,6 +26,7 @@ resource "aws_autoscaling_group" "asg" {
 
   depends_on = [
     module.vpc,
+    aws_lb_target_group.alb_tg,
     aws_launch_configuration.asg_launch_conf
   ]
 }
