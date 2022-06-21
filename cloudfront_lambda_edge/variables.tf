@@ -1,13 +1,8 @@
-variable "region_edge" {
-  type        = string
-  description = "The AWS Region to use for the Lambda@Edge Function"
-  default     = "us-east-1" # no other region allowed for Lambda@Edge
-}
 
 variable "region" {
   type        = string
-  description = "The AWS Region to use for the other resources"
-  default     = "us-west-2" # setting different region for other resources
+  description = "The AWS Region to use for resources"
+  default     = "us-east-1" 
 }
 
 variable "bucket_prefix" {

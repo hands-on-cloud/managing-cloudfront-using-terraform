@@ -1,0 +1,1 @@
+{"filename": "builds/762ed2dbb6f839a4790712a3239eaba26553a222602e44fdf122199b8cad9114.zip", "runtime": "nodejs14.x", "artifacts_dir": "builds", "build_plan": [["zip", "src/index.js", null]]}

@@ -1,8 +1,4 @@
 module "lambda_at_edge" {
-  # provider for lambda edge region (us-east-1)
-  providers = {
-    aws = aws.lambda_edge
-  }
   source = "terraform-aws-modules/lambda/aws"
 
   lambda_at_edge = true

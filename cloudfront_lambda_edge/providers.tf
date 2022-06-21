@@ -11,9 +11,3 @@ terraform {
 provider "aws" {
   region = var.region
 }
-
-# use separate provider for Lambda@Edge
-provider "aws" {
-  region = var.region_edge
-  alias  = "lambda_edge"
-}

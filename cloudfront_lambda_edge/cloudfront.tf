@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "cf_dist" {
 
     lambda_function_association {
       event_type   = "origin-response"
-      lambda_arn   = module.lambda_at_edge.arn
+      lambda_arn   = module.lambda_at_edge.lambda_function_qualified_arn
       include_body = false
     }
 
