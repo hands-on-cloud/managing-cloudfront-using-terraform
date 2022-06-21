@@ -5,7 +5,7 @@ variable "region_edge" {
 }
 
 variable "region" {
-    type        = string
+  type        = string
   description = "The AWS Region to use for the other resources"
   default     = "us-west-2" # setting different region for other resources
 }
