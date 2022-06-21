@@ -42,10 +42,7 @@ resource "aws_cloudfront_distribution" "cf_dist" {
     }
   }
 
-  tags = {
-    "Project"   = "hands-on.cloud"
-    "ManagedBy" = "Terraform"
-  }
+  tags =local.tags
 
   viewer_certificate {
     acm_certificate_arn      = aws_acm_certificate.cert.arn
